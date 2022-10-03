@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EC3ADB46-BF71-4BCF-A743-6946E7EF8925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore.Service", "src\Bookstore.Service\Bookstore.Service.csproj", "{1C015414-3FEC-40E7-8D2E-7D80D6650ECD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C015414-3FEC-40E7-8D2E-7D80D6650ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C015414-3FEC-40E7-8D2E-7D80D6650ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C015414-3FEC-40E7-8D2E-7D80D6650ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C015414-3FEC-40E7-8D2E-7D80D6650ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C015414-3FEC-40E7-8D2E-7D80D6650ECD} = {EC3ADB46-BF71-4BCF-A743-6946E7EF8925}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C88D169-69DF-4BF4-968D-6146A2343D72}
+	EndGlobalSection
+EndGlobal
