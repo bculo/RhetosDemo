@@ -5,7 +5,12 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EC3ADB46-BF71-4BCF-A743-6946E7EF8925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore.Service", "src\Bookstore.Service\Bookstore.Service.csproj", "{1C015414-3FEC-40E7-8D2E-7D80D6650ECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookstore.Service", "src\Bookstore.Service\Bookstore.Service.csproj", "{1C015414-3FEC-40E7-8D2E-7D80D6650ECD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB6052A7-87AE-408E-8812-B2DC25A6B17E}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\flat-book.txt = Assets\flat-book.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

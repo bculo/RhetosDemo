@@ -1,0 +1,19 @@
+1. Zadatak
+
+Select -> selektiranje stupaca u bazi (ne treba nuzno biti baza)
+Where -> Postavljanje uvjeta za dohvacanje zapisa iz baze
+
+2. Zadatak
+
+a)
+	query.ToList().Select(b => b.Title).Take(3).Dump();
+	Na IQueryable instanci prvo se poziva metoda ToList() koja odmah izvršava upit na bazi (sve se selektira). Select i Take se zatim izvršava u memoriji (kod).
+
+b)
+	query.Select(b => b.Title).ToList().Take(3).Dump();
+ 	Na IQueryable instanci prvo se poziva metoda Select() putem kojom "odabiremo" stupce u bazi. Zatim se poziva ToList() koji izvršava upit na bazi. Take se jos uvijek izvršava u u memoriji
+
+c)
+	query.Select(b => b.Title).Take(3).ToList().Dump();
+	Sve se izvršava u bazi.
+
