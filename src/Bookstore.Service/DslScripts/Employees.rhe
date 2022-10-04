@@ -1,0 +1,33 @@
+﻿Module Employees
+{
+	Entity Employee
+	{
+		ShortString Name;
+		ShortString VAT { Required; Unique; }
+	}
+
+	Entity Manager
+	{
+		Extends Employees.Employee;
+		ShortString BonusInformation;
+	}
+
+	Entity EducationRecord
+	{
+		Reference Employee { Required; }
+		Date Created; //Or DateTime
+		LongString Description;
+	}
+
+	Entity Department
+	{
+		ShortString Code { Required; Unique; }
+		ShortString Description { Required; Unique; }
+	}
+
+	Entity EmployeeDepartment
+	{
+		Reference Employee { Required; }
+		Reference Department { Required; }
+	}
+}
