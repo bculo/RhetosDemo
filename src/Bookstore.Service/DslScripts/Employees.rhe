@@ -29,5 +29,7 @@
 	{
 		Reference Employee { Required; }
 		Reference Department { Required; }
+
+		UniqueMultiple 'Employee Department';
 	}
 }

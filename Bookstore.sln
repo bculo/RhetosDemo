@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookstore.Service", "src\Bo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB6052A7-87AE-408E-8812-B2DC25A6B17E}"
 	ProjectSection(SolutionItems) = preProject
+		Assets\Employee-diagram.png = Assets\Employee-diagram.png
 		Assets\flat-book.txt = Assets\flat-book.txt
+		Assets\Task linq to sql.txt = Assets\Task linq to sql.txt
 	EndProjectSection
 EndProject
 Global
