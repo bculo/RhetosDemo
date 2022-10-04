@@ -3,7 +3,15 @@
 	Entity Employee
 	{
 		ShortString Name;
-		ShortString VAT { Required; Unique; }
+		ShortString VAT 
+		{ 
+			Required; 
+			Unique;
+		}
+
+		Logging { AllProperties; }
+		Deactivatable;
+		DateTime CreatedOn { CreationTime; }
 	}
 
 	Entity Manager
@@ -15,14 +23,23 @@
 	Entity EducationRecord
 	{
 		Reference Employee { Required; }
-		Date Created; //Or DateTime
+		DateTime CreatedOn { CreationTime; }
+		DateTime ModifiedOn { ModificationTimeOf Employees.EducationRecord.Description; } 
 		LongString Description;
 	}
 
 	Entity Department
 	{
-		ShortString Code { Required; Unique; }
-		ShortString Description { Required; Unique; }
+		ShortString Code
+		{ 
+			Required; 
+			Unique; 
+		}
+		ShortString Description 
+		{ 
+			Required; 
+			Unique;
+		}
 	}
 
 	Entity EmployeeDepartment

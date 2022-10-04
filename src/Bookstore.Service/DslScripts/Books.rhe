@@ -2,15 +2,27 @@
 {
     Entity Book
     {
-        ShortString Code { Unique; Required; }
+        ShortString Code 
+        { 
+            Unique; 
+            Required; 
+            AutoCode; 
+        }
         ShortString Title { Required; }
-        Integer NumberOfPages;
+        Integer NumberOfPages 
+        { 
+            DefaultValue 'item => 1';
+            MaxValue 1001;
+        }
         Reference Author Bookstore.Person;
     }
 
     Entity Person
     {
         ShortString Name;
+
+        ItemFilter PersonIsAdmin 'person => person.Name.Trim().ToLower() == "admin"';
+        Lock PersonIsAdmin 'Name is equal to admin.';
     }
 
     Entity Comment
@@ -36,7 +48,13 @@
 
     Entity Topic
     {
-        ShortString Name { Unique; Required; }
+        ShortString Name 
+        { 
+            Unique; 
+            Required;
+        }
+
+        DenyUserEdit;
     }
 
     Entity BookTopic
