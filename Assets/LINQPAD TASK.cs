@@ -11,10 +11,10 @@ void Main()
 		//Assignment 3 with Load
 		Console.WriteLine("Assignment 3 START");
 		var books = repository.Bookstore.Book.Load(); //select books -> DB
-		var authorsGuidsArray = books.Select(i => i.AuthorID ?? Guid.Empty).Where(i => i != Guid.Empty).Distinct().ToArray(); //select author ids -> IN MEMORY
-		var authorsData = repository.Bookstore.Person.Load(authorsGuidsArray); //select authors -> DB
+        var authorsGuidsArray = books.Where(i => i.AuthorID.HasValue).Select(i => i.AuthorID.Value).Distinct().ToArray(); //select author ids -> IN MEMORY
+        var authorsData = repository.Bookstore.Person.Load(authorsGuidsArray); //select authors -> DB
 		
-		var assignment3Result = new List<(string authorName, string title)>();
+		var assignment3Result = new List<(string authorName, string title)>(); //tuple
 		foreach(var book in books) { //rostiljanje in memory
 			if(!book.AuthorID.HasValue){
 				assignment3Result.Add(new (null, book.Title));
