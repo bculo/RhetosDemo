@@ -8,12 +8,21 @@
             Required; 
             AutoCode; 
         }
+
         ShortString Title { Required; }
         Integer NumberOfPages 
         { 
             DefaultValue 'item => 1';
             MaxValue 1001;
         }
+
+        ItemFilter RemoveBooksWithZeroPages 'item => item.NumberOfPages > 0';
+
+        ItemFilter ForeignAuthorXWithComments 'item =>
+            item.Author.Name.StartsWith("C")
+            && item.Extension_ForeignBook.ID == null
+            && _domRepository.Bookstore.Comment.Subquery.Where(c => c.BookID == item.ID).Count() == 0';
+
         Reference Author Bookstore.Person;
     }
 
@@ -21,8 +30,20 @@
     {
         ShortString Name;
 
+        ComposableFilterBy RemoveUserThatContains '(query, repository, parameter) =>
+        {
+            if(string.IsNullOrEmpty(parameter.Name))
+                return query;
+            return query.Where(item => !item.Name.Trim().ToLower().Contains(parameter.Name.Trim()));
+        }';
+
         ItemFilter PersonIsAdmin 'person => person.Name.Trim().ToLower() == "admin"';
         Lock PersonIsAdmin 'Name is equal to admin.';
+    }
+
+    Parameter RemoveUserThatContains 
+    {
+        ShortString Name;
     }
 
     Entity Comment
