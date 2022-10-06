@@ -18,11 +18,6 @@
 
         ItemFilter RemoveBooksWithZeroPages 'item => item.NumberOfPages > 0';
 
-        ItemFilter ForeignAuthorXWithComments 'item =>
-            item.Author.Name.StartsWith("C")
-            && item.Extension_ForeignBook.ID == null
-            && _domRepository.Bookstore.Comment.Subquery.Where(c => c.BookID == item.ID).Count() == 0';
-
         Reference Author Bookstore.Person;
     }
 
@@ -50,6 +45,28 @@
     {
         Reference Book { Detail; }
         LongString Text;
+
+        FilterBy FetchFormatedComments '(repository, parameter) => 
+        {
+            if(string.IsNullOrEmpty(parameter.NewSplitCharacterForText))
+                return repository.Bookstore.Comment.Load();
+
+            var comments = repository.Bookstore.Comment.Load();
+            foreach(var comment in comments) {
+                if(comment.Text is null)
+                    continue;
+
+                if(comment.Text.Contains(" "))
+                    comment.Text = comment.Text.Replace(" ", parameter.NewSplitCharacterForText);
+            }
+
+            return comments;
+        }';
+    }
+
+    Parameter FetchFormatedComments 
+    {
+        ShortString NewSplitCharacterForText;
     }
 
     Entity ChildrensBook
