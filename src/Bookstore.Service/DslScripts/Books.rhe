@@ -21,6 +21,29 @@
         Reference Author Bookstore.Person;
     }
 
+    Entity Disposal
+    {
+        Reference Book { Required; }
+        LongString Explanation { Required; }
+        DateTime EffectiveSince { CreationTime; }
+
+        ItemFilter ImportantBookExplanation 'item => item.Book.Title.Contains("important") && item.Explanation.Length < 50';
+        InvalidData ImportantBookExplanation 'When disposing an important book, the explanation should be at least 50 characters long.'
+        {
+            MarkProperty Bookstore.Disposal.Explanation;
+            ErrorMetadata 'Severity' 'Low';
+        }
+
+        ItemFilter HighRating 'item => item.Book.Extension_BookRating.Rating > 100';
+        InvalidData HighRating 'You are not allowed to dispose a book with rating above 100.';
+    }
+
+    Entity BookRating
+    {
+        Extends Bookstore.Book;
+        Decimal Rating;
+    }
+
     Entity Person
     {
         ShortString Name;
@@ -261,4 +284,17 @@
         ShortString Title;
     }
 
+    SqlView FetchCommentsView <SQL\ViewExample.sql>;
+
+    SqlQueryable ExecuteFetchCommentView
+    "
+        SELECT * FROM BookStore.FetchCommentsView
+	"
+    {
+	    Extends Bookstore.Comment;
+        ShortString Text;
+        Guid BookID;
+
+	    AutodetectSqlDependencies;
+    }
 }
