@@ -21,6 +21,25 @@
         Reference Author Bookstore.Person;
     }
 
+    Entity Review
+    {
+        Reference Book { Required; }
+        Integer Score { Required; MinValue 1; MaxValue 5; }
+        LongString Text;
+
+        SaveMethod
+        {
+            Initialization DefaultTextFromScore
+            '
+                foreach (var item in insertedNew)
+                    if (string.IsNullOrEmpty(item.Text) && item.Score != null)
+                        item.Text = item.Score.Value >= 3
+                            ? "I like it"
+                            : "I don''t like it";
+            ';
+        }
+    }
+
     Entity Disposal
     {
         Reference Book { Required; }
